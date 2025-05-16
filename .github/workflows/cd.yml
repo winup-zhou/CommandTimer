@@ -21,10 +21,6 @@ jobs:
         with:
           name: commandtimer-java8
           path: build/libs/commandtimer-java8.jar
-      - name: Publish package
-        run: gradle publishMavenPublicationToGitHubPackagesRepository
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   Build-Java-17:
     runs-on: ubuntu-latest
     permissions:
@@ -41,10 +37,6 @@ jobs:
         with:
           name: commandtimer-java17
           path: build/libs/commandtimer-java17.jar
-      - name: Publish package
-        run: gradle publishMavenPublicationToGitHubPackagesRepository
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   Build-Java-21:
     runs-on: ubuntu-latest
     permissions:
@@ -61,10 +53,6 @@ jobs:
         with:
           name: commandtimer-java21
           path: build/libs/commandtimer-java21.jar
-      - name: Publish package
-        run: gradle publishMavenPublicationToGitHubPackagesRepository
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   Release:
     needs:
       - Build-Deploy-Java-8
