@@ -59,6 +59,14 @@ jobs:
           distribution: "adopt"
           java-version: "17"
       - run: gradle :shadowJar -b java17-build.gradle
+      - uses: actions/upload-artifact@v4
+        with:
+          name: commandtimer-java17
+          path: build/libs/commandtimer-java17.jar
+      - name: Publish package
+        run: gradle publishMavenPublicationToGitHubPackagesRepository
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   Build-Java-21:
     runs-on: ubuntu-latest
     permissions:
@@ -71,6 +79,14 @@ jobs:
           distribution: "adopt"
           java-version: "21"
       - run: gradle :shadowJar -b java21-build.gradle
+      - uses: actions/upload-artifact@v4
+        with:
+          name: commandtimer-java21
+          path: build/libs/commandtimer-java21.jar
+      - name: Publish package
+        run: gradle publishMavenPublicationToGitHubPackagesRepository
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   Release:
     needs:
       - Build-Deploy-Java-8
